@@ -104,6 +104,24 @@ var progress_circle = new ProgressCircle("#main", true);
 
 // only add -> <script type="text/javascript" src="assets/js/progresscircle.js"></script>
 ```
+Çalışan bir örnek kodun tamamamı / A complete working example code
+------
+```js
+// "#main" or ".main"-> verinin ekleneceği elemanı ifade eder / Indicates the element to which the data will be inserted.
+// <div id="main"></div>
+
+var progress_circle = new ProgressCircle("#main", true);
+
+var obj = {
+	text : "63%",
+	percent : 63,
+	lines : [{text:"Line 1"}, {text:"Line 2"}, {text:"Line 3"}, {text:"Line 4"}, {text:"Line 5"}],
+	color : "red",
+	textColor: "red"
+};
+
+progress_circle.load(obj);
+```
 Css buradaki projeden alınmıştır:
 
 Css Fork-> https://github.com/tiagobalmeida/purecss-circular-progress-bar
