@@ -104,6 +104,6 @@ var progress_circle = new ProgressCircle("#main", true);
 
 // only add -> <script type="text/javascript" src="assets/js/progresscircle.js"></script>
 ```
-
+Css buradaki projeden alınmıştır:
 
 Css Fork-> https://github.com/tiagobalmeida/purecss-circular-progress-bar
