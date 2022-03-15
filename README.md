@@ -4,7 +4,7 @@ Saf Css ve Javascript ile geliştirilen dairesel ilerleme çubuğu. / Pure Css a
 
 İstenirse tek javascript dosyası ile çalışabilir. (css olmadan) / If desired, it can work with a single javascript file. (without css)
 
-![This is an image](https://github.com/cengizbesir/ProgressCircleBar/blob/main/ProgressCircleBar.png)
+![Progress Circle Bar Screenshot](https://github.com/cengizbesir/ProgressCircleBar/blob/main/ProgressCircleBar.png)
 
 Kullanım / Usage
 ------
