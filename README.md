@@ -1,12 +1,8 @@
 # ProgressCircle
 
-Saf Css ve Javascript ile geliştirilen dairesel ilerleme çubuğu.
+Saf Css ve Javascript ile geliştirilen dairesel ilerleme çubuğu. / Pure Css and Javascript Circle Progress Bar.
 
-Pure Css and Javascript Circle Progress Bar.
-
-İstenirse tek javascript dosyası ile çalışabilir. (css olmadan)
-
-If desired, it can work with a single javascript file. (without css)
+İstenirse tek javascript dosyası ile çalışabilir. (css olmadan) / If desired, it can work with a single javascript file. (without css)
 
 Kullanım / Usage
 ------
