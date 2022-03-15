@@ -14,8 +14,7 @@ Kullanım / Usage
 var progress_circle = new ProgressCircle("#main");
 ```
 ```js
-//css dosyasız çalışma
-//without css file
+//css dosyasız çalışma / without css file
 var progress_circle = new ProgressCircle("#main", true);
 ```
 ```js
