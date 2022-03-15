@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Progress Circle</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<script type="text/javascript" src="assets/js/progresscircle.js"></script>
+		<link rel="stylesheet" href="assets/css/progresscircle.css">
+	</head>
+<body>
+
+<button onclick="automaticOn()">Auto Test - On</button>
+<button onclick="automaticOff()">Auto Test - Off</button>
+
+<button onclick='progress_circle.change({lines: [{text: "Add Line 1"},{text: "Add Line 2"}],percent: 30, color: "red", text: "30%", textColor: "blue", index: 5})'>
+	Change 6.Circle</button>
+	
+<button onclick='progress_circle.change({lines: [],percent: 55, color: "orange", text: "55%", textColor: "grey", index: 6})'>
+	Change 7.Circle (lines remove)</button>
+	
+<button onclick='progress_circle.change({lines: [{text: "Add Line 1"},{text: "Add Line 2"},{text: "Add Line 3"}], index: 6})'>
+	Change 7.Circle (lines add)</button>
+	
+<button onclick='progress_circle.change({lines: [{text: "Change Line 1"},{text: "Change Line 2"},{text: "Change Line 3"},{}], index: 6})'>
+	Change 7.Circle (lines change)</button>
+
+<div id="main"></div>
+
+<script>
+const progress_circle = new ProgressCircle("#main", false);
+
+var timer = null;
+var percent = [];
+var color = [];
+const progress_colors = progress_circle.getColors();
+
+for(let i = 0; i < 7; i++){
+	percent.push(parseInt(Math.floor(Math.random() * 100)));
+	color.push(progress_colors[parseInt(Math.floor(Math.random() * progress_colors.length))]);
+}
+
+var obj = [
+	{
+		text : "1.<br/>" + percent[0] + "%<br/>Exam.",
+		percent : percent[0],
+		lines : [{text:"Line 1"}, {text:"Line 2"}],
+		color : color[0],
+		textColor: color[0]
+	},
+	{
+		text : percent[1],
+		percent : percent[1],
+		lines : [{text:"Line 1"}, {text:"Line 2"}],
+		color : color[1],
+		textColor: color[1]
+	},
+	{
+		text : "3.<br/>" + percent[2] + "%<br/>Exam.",
+		percent : percent[2],
+		lines : [{text:"One Line"}],
+		color : color[2],
+		textColor: color[2]
+	},
+	{
+		text : "4.<br/>" + percent[3] + "%<br/>Exam.",
+		percent : percent[3],
+		color : color[3],
+		textColor: color[3]
+	},
+	{
+		text : percent[4],
+		percent : percent[4]
+	},
+	{
+	//empty
+	}
+];
+
+progress_circle.load(obj);
+let pc_app = progress_circle.getApp();
+
+let object_2 = {
+	text : percent[5] + "%",
+	percent : percent[5],
+	lines : [{text:"Line 1"}, {text:"Line 2"}, {text:"Line 3"}, {text:"Line 4"}],
+	color : color[5],
+	textColor: color[5]
+};
+
+progress_circle.load(object_2);
+
+//console.log(pc_app); // all containers -> pc_app.containers[]
+
+let container = null;
+let _percent,_color,_text,_obj;
+
+for(let i = 0; i < pc_app.containers.length; i++){
+
+	container = pc_app.containers[i];
+	
+	let _line = [];
+	for(let q = 0; q < container.lines.length; q++){
+		_line.push({text: "Ahaa " + (q + 1) + ".line!"});
+	}
+
+	for(let w = 0; w < container.lines.length; w++){
+	
+		let element = container.lines[w];
+
+		element.addEventListener("click", function(event){
+
+			_percent = parseInt(Math.floor(Math.random() * 100));
+			_color = progress_circle.colors[parseInt(Math.floor(Math.random() * progress_circle.colors.length))];
+			_text = (i + 1) + "<br/>" + _percent + "<br/>Well";
+			
+			_obj = {
+					lines: _line,
+					percent: _percent,
+					color: _color,
+					text: _text,
+					textColor: _color,
+					index: i,
+			};
+			
+			progress_circle.change(_obj);
+			
+		}, false);
+	}//for(let w
+	
+}//for(let i
+
+function automaticOn(){
+
+	timer = setInterval(function(){
+	
+		let _length = pc_app.containers.length;
+		let _index = parseInt(Math.floor(Math.random() * _length));
+		let _percent = parseInt(Math.floor(Math.random() * 100));
+		let _color = progress_circle.colors[parseInt(Math.floor(Math.random() * progress_circle.colors.length))];
+		let _text = "Changed<br/>" + _percent + "%<br/>Ohh";
+		let _textColor = progress_circle.colors[parseInt(Math.floor(Math.random() * progress_circle.colors.length))];
+		
+		let container = pc_app.containers[_index];
+		let _line = [];
+		for(let q = 0; q < container.lines.length; q++){
+			_line.push({text: "Ahaa " + (q + 1) + ".line!"});
+		}
+		
+		progress_circle.change({lines: _line,percent: _percent, color: _color, text: _text, textColor: _textColor, index: _index});
+		
+	},500);
+}
+
+function automaticOff(){
+	clearInterval(timer);
+}
+</script>
+</body>
+</html>
