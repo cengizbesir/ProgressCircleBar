@@ -24,6 +24,7 @@
 	Change 7.Circle (lines change)</button>
 
 <div id="main"></div>
+<div class="mainclass"></div>
 
 <script>
 var progress_circle = new ProgressCircle("#main", false);
@@ -153,6 +154,31 @@ function automaticOn(){
 function automaticOff(){
 	clearInterval(timer);
 }
+
+//////////////////////////////////// mainclass ////////////////////////////////
+
+var progress_circle2 = new ProgressCircle(".mainclass");
+
+let obj_2 = [
+	{
+		text : "50%",
+		percent : 50,
+		lines : [{text:"Line 1"}, {text:"Line 2"}],
+		color : "green",
+		textColor: "grey"
+	},{
+		text : "98%",
+		percent : 98,
+		lines : [{text:"Line 1"}, {text:"Line 2"}, {text:"Line 3"}, {text:"Line 4"}, {text:"Line 5"}],
+		color : "purple",
+		textColor: "purple"
+	},
+	{
+		percent: 15
+	}
+];
+
+progress_circle.load(obj_2);
 </script>
 </body>
 </html>
