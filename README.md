@@ -89,6 +89,21 @@ progress_circle.load({text:"Ahaa", percent: 15, color: "purple"});
 // add empty - circle bar
 progress_circle.load({});
 ```
+Ekrana duyarlı çalışması için ekleyiniz.(responsive)
+```html
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+```
+```html
+<script type="text/javascript" src="assets/js/progresscircle.js"></script>
+<link rel="stylesheet" href="assets/css/progresscircle.css">
+```
+Bu yöntem ile kullanıldığında css dosyasına ihtiyaç yoktur.
+No css file is needed when used with this method.
+```js
+var progress_circle = new ProgressCircle("#main", true);
+
+// only add -> <script type="text/javascript" src="assets/js/progresscircle.js"></script>
+```
 
 
 Css Fork-> https://github.com/tiagobalmeida/purecss-circular-progress-bar
