@@ -120,6 +120,7 @@ var obj = {
 progress_circle.load(obj);
 ```
 Önceden eklenmiş verileri değiştirme.
+Changing previously added data.
 ```js
 var obj = {
 	text : "63%",
@@ -131,6 +132,18 @@ var obj = {
 };
 
 progress_circle.change(obj);
+```
+Dairesel işlem çubuğuna tıklama olayı ekleme.
+```js
+var obj = {......};
+progress_circle.load(obj);
+let pc_app = progress_circle.getApp();
+container = pc_app.containers[0..100...1000(int)];
+	
+//Container -> progress_circle object -> add Event
+container.progress_circle.view.addEventListener("click", function(event){
+	//code run...
+},false);
 ```
 
 Css buradaki projeden alınmıştır:
