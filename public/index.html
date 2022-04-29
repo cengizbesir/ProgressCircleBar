@@ -98,6 +98,11 @@ for(let i = 0; i < pc_app.containers.length; i++){
 
 	container = pc_app.containers[i];
 	
+	//Container -> progress_circle object -> add Event
+	container.progress_circle.view.addEventListener("click", function(event){
+		alert("Click ProgressCircleBar(progress_circle.view): " + i);
+	},false);
+	
 	let _line = [];
 	for(let q = 0; q < container.lines.length; q++){
 		_line.push({text: "Ahaa " + (q + 1) + ".line!"});
