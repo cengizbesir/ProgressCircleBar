@@ -10,47 +10,47 @@ Usage (recommended usage) / Kullanım
 ------
 ```js
 const obj = {
-				selector: "body" , 
-				css: true , //without css file
-				data: [ {
-							text : "1.<br/>44%<br/>Exam." ,
-							percent : 44 ,
-							lines : [ { text: "Line 1", click: function() { console.log("Line 1 Click!"); } }
-									, { text: "Line 2", click: function() { console.log("Line 2 Click!"); } } ] ,
-							color : "red" ,
-							textColor: "grey" ,
-							click: function() {
-								console.log("Container Click!");
-							}
-						},
-						{
-							text : "63%",
-							percent : 63,
-							lines : [{text:"Line 1"}, {text:"Line 2"}],
-							color : "green",
-							textColor: "blue"
-						},
-						{
-							text : "3.<br/>75%<br/>Exam.",
-							percent : 75,
-							lines : [{text:"Single Line"}],
-							color : "blue",
-							textColor: "red"
-						},
-						{
-							text : "4.<br/>32%<br/>Exam.",
-							percent : 32,
-							color : "pink",
-							textColor: "brown"
-						},
-						{
-							text : "95",
-							percent : 95
-						},
-						{
-						//empty
-						} ]
-			};
+		selector: "body" , 
+		css: true , //without css file
+		data: [ {
+					text : "1.<br/>44%<br/>Exam." ,
+					percent : 44 ,
+					lines : [ { text: "Line 1", click: function() { console.log("Line 1 Click!"); } }
+							, { text: "Line 2", click: function() { console.log("Line 2 Click!"); } } ] ,
+					color : "red" ,
+					textColor: "grey" ,
+					click: function() {
+						console.log("Container Click!");
+					}
+				},
+				{
+					text : "63%",
+					percent : 63,
+					lines : [{text:"Line 1"}, {text:"Line 2"}],
+					color : "green",
+					textColor: "blue"
+				},
+				{
+					text : "3.<br/>75%<br/>Exam.",
+					percent : 75,
+					lines : [{text:"Single Line"}],
+					color : "blue",
+					textColor: "red"
+				},
+				{
+					text : "4.<br/>32%<br/>Exam.",
+					percent : 32,
+					color : "pink",
+					textColor: "brown"
+				},
+				{
+					text : "95",
+					percent : 95
+				},
+				{
+				//empty
+				} ]
+	};
 
 
 const pc = new ProgressCircle(obj);
