@@ -11,7 +11,7 @@ Usage (recommended usage) / Kullanım
 ```js
 const obj = {
 		selector: "body" , 
-		css: true , //without css file
+		css: true , //without css file : true
 		data: [ {	text : "1.<br/>44%<br/>Exam." ,
 				percent : 44 ,
 				lines : [ { text: "Line 1", click: function() { console.log("Line 1 Click!"); } }
