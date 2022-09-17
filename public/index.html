@@ -1,189 +1,141 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Progress Circle</title>
+		<title>Progress Circle Bar</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script type="text/javascript" src="assets/js/progresscircle.js"></script>
 		<link rel="stylesheet" href="assets/css/progresscircle.css">
 	</head>
 <body>
 
-<button onclick="automaticOn()">Auto Test - On</button>
-<button onclick="automaticOff()">Auto Test - Off</button>
-
-<button onclick='progress_circle.change({lines: [{text: "Add Line 1"},{text: "Add Line 2"}],percent: 30, color: "red", text: "30%", textColor: "blue", index: 5})'>
-	Change 6.Circle</button>
-	
-<button onclick='progress_circle.change({lines: [],percent: 55, color: "orange", text: "55%", textColor: "grey", index: 6})'>
-	Change 7.Circle (lines remove)</button>
-	
-<button onclick='progress_circle.change({lines: [{text: "Add Line 1"},{text: "Add Line 2"},{text: "Add Line 3"}], index: 6})'>
-	Change 7.Circle (lines add)</button>
-	
-<button onclick='progress_circle.change({lines: [{text: "Change Line 1"},{text: "Change Line 2"},{text: "Change Line 3"},{}], index: 6})'>
-	Change 7.Circle (lines change)</button>
+<button onclick='updatePc()'>Update ProgressCircle</button>
 
 <div id="main"></div>
-<div class="mainclass"></div>
-
 <script>
-var progress_circle = new ProgressCircle("#main", false);
+let obj = {
+			selector: "#main" ,
+			css: false ,
+			data: [ {
+						text : "* Examp * Examp * Examp" ,
+						percent : 25 ,
+						lines : [ { text: "Line 1", click: function(){ console.log("Line 1 Click"); } }
+								, { text: "Line 2", click: function(){ console.log("Line 2 Click"); } } 
+								] ,
+						color : "green" ,
+						textColor: "black" ,
+						click : function() {
+							console.log("Container click");
+						}
+					},
+					{
+						text : "95" ,
+						percent : 95
+					},
+					{
+					//empty
+					}
+				  ]
+		  };
+			
+const pc = new ProgressCircle(obj);
 
-var timer = null;
-var percent = [];
-var color = [];
-var progress_colors = progress_circle.getColors();
+function updatePc() {
+	let data = {
+				text : "Update Data" ,
+				percent : 59 ,
+				lines : [ { text: "Yes, Line 1", click: function(){ console.log(pc.app.containers[0]); } }
+						, { text: "Yes, Line 2", click: function(){ console.log("Line 2 Click (change)"); } } 
+						] ,
+				color : "purple" ,
+				textColor: "black" ,
+				click : function() {
+					console.log("Container click (Change)");
+				}
+			};
 
-for(let i = 0; i < 7; i++){
-	percent.push(parseInt(Math.floor(Math.random() * 100)));
-	color.push(progress_colors[parseInt(Math.floor(Math.random() * progress_colors.length))]);
+	pc.update(data);
 }
 
-var obj = [
+/////////////////////////////////////////////////////////////////
+obj = {
+	selector: "body" , 
+	css: false , //without css file : true
+	data: [ {
+				text : "1.<br/>44%<br/>Exam." ,
+				percent : 44 ,
+				lines : [ { text: "Line 1", click: function() { console.log("Line 1 Click!"); } }
+						, { text: "Line 2", click: function() { console.log("Line 2 Click!"); } } ] ,
+				color : "red" ,
+				textColor: "grey" ,
+				click: function() {
+					console.log("Container Click!");
+				}
+			},
+			{
+				text : "63%",
+				percent : 63,
+				lines : [{text:"Line 1"}, {text:"Line 2"}],
+				color : "green",
+				textColor: "blue"
+			},
+			{
+				text : "3.<br/>75%<br/>Exam.",
+				percent : 75,
+				lines : [{text:"Single Line"}],
+				color : "blue",
+				textColor: "red"
+			},
+			{
+				text : "4.<br/>32%<br/>Exam.",
+				percent : 32,
+				color : "pink",
+				textColor: "brown"
+			},
+			{
+				text : "95",
+				percent : 95
+			},
+			{
+			//empty
+			} ]
+		};
+
+const pc2 = new ProgressCircle(obj);
+///////////////////////////////////////////////////////
+const pc3 = new ProgressCircle({ selector: "body" });
+///////////////////////////////////////////////////////
+obj = [
 	{
-		text : "1.<br/>" + percent[0] + "%<br/>Exam.",
-		percent : percent[0],
+		text : "Progress Circle 3<br/>60%",
+		percent : 60,
 		lines : [{text:"Line 1"}, {text:"Line 2"}],
-		color : color[0],
-		textColor: color[0]
+		color : "yellow",
+		textColor: "black"
 	},
 	{
-		text : percent[1],
-		percent : percent[1],
+		text : "73%",
+		percent : 73,
 		lines : [{text:"Line 1"}, {text:"Line 2"}],
-		color : color[1],
-		textColor: color[1]
-	},
-	{
-		text : "3.<br/>" + percent[2] + "%<br/>Exam.",
-		percent : percent[2],
-		lines : [{text:"Single Line"}],
-		color : color[2],
-		textColor: color[2]
-	},
-	{
-		text : "4.<br/>" + percent[3] + "%<br/>Exam.",
-		percent : percent[3],
-		color : color[3],
-		textColor: color[3]
-	},
-	{
-		text : percent[4],
-		percent : percent[4]
-	},
-	{
-	//empty
+		color : "orange",
+		textColor: "black"
 	}
 ];
 
-progress_circle.load(obj);
-let pc_app = progress_circle.getApp();
-
-let object_2 = {
-	text : percent[5] + "%",
-	percent : percent[5],
+pc3.load(obj);
+///////////////////////////////////////////////////////
+obj = {
+	text : "98%",
+	percent : 55,
 	lines : [{text:"Line 1"}, {text:"Line 2"}, {text:"Line 3"}, {text:"Line 4"}],
-	color : color[5],
-	textColor: color[5]
+	color : "brown",
+	textColor: "red"
 };
 
-progress_circle.load(object_2);
+pc.load(obj);
 
-//console.log(pc_app); // all containers -> pc_app.containers[]
-
-let container = null;
-let _percent,_color,_text,_obj;
-
-for(let i = 0; i < pc_app.containers.length; i++){
-
-	container = pc_app.containers[i];
-	
-	//Container -> progress_circle object -> add Event
-	container.progress_circle.view.addEventListener("click", function(event){
-		alert("Click ProgressCircleBar(progress_circle.view): " + i);
-	},false);
-	
-	let _line = [];
-	for(let q = 0; q < container.lines.length; q++){
-		_line.push({text: "Ahaa " + (q + 1) + ".line!"});
-	}
-
-	for(let w = 0; w < container.lines.length; w++){
-	
-		let element = container.lines[w];
-
-		element.addEventListener("click", function(event){
-
-			_percent = parseInt(Math.floor(Math.random() * 100));
-			_color = progress_circle.colors[parseInt(Math.floor(Math.random() * progress_circle.colors.length))];
-			_text = (i + 1) + "<br/>" + _percent + "<br/>Well";
-			
-			_obj = {
-					lines: _line,
-					percent: _percent,
-					color: _color,
-					text: _text,
-					textColor: _color,
-					index: i,
-			};
-			
-			progress_circle.change(_obj);
-			
-		}, false);
-	}//for(let w
-	
-}//for(let i
-
-function automaticOn(){
-
-	timer = setInterval(function(){
-	
-		let _length = pc_app.containers.length;
-		let _index = parseInt(Math.floor(Math.random() * _length));
-		let _percent = parseInt(Math.floor(Math.random() * 100));
-		let _color = progress_circle.colors[parseInt(Math.floor(Math.random() * progress_circle.colors.length))];
-		let _text = "Changed<br/>" + _percent + "%<br/>Ohh";
-		let _textColor = progress_circle.colors[parseInt(Math.floor(Math.random() * progress_circle.colors.length))];
-		
-		let container = pc_app.containers[_index];
-		let _line = [];
-		for(let q = 0; q < container.lines.length; q++){
-			_line.push({text: "Ahaa " + (q + 1) + ".line!"});
-		}
-		
-		progress_circle.change({lines: _line,percent: _percent, color: _color, text: _text, textColor: _textColor, index: _index});
-		
-	},500);
-}
-
-function automaticOff(){
-	clearInterval(timer);
-}
-
-//////////////////////////////////// mainclass ////////////////////////////////
-
-var progress_circle_2 = new ProgressCircle(".mainclass");
-
-let obj_2 = [
-	{
-		text : "50%",
-		percent : 50,
-		lines : [{text:"Line 1"}, {text:"Line 2"}],
-		color : "green",
-		textColor: "grey"
-	},{
-		text : "98%",
-		percent : 98,
-		lines : [{text:"Line 1"}, {text:"Line 2"}, {text:"Line 3"}, {text:"Line 4"}, {text:"Line 5"}],
-		color : "purple",
-		textColor: "purple"
-	},
-	{
-		percent: 15
-	}
-];
-
-progress_circle_2.load(obj_2);
+pc.load({text:"Ahaa", percent: 15, color: "purple"});
+// add empty - circle bar
+pc.load({});
 </script>
 </body>
 </html>

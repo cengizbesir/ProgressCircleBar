@@ -6,28 +6,59 @@ Saf Css ve Javascript ile geliştirilen dairesel ilerleme çubuğu. / Pure Css a
 
 ![Progress Circle Bar Screenshot](https://github.com/cengizbesir/ProgressCircleBar/blob/main/ProgressCircleBar.png)
 
-Kullanım / Usage
+Usage (recommended usage) / Kullanım
 ------
 ```js
-var progress_circle = new ProgressCircle("#main");
+const obj = {
+				selector: "body" , 
+				css: true , //without css file
+				data: [ {
+							text : "1.<br/>44%<br/>Exam." ,
+							percent : 44 ,
+							lines : [ { text: "Line 1", click: function() { console.log("Line 1 Click!"); } }
+									, { text: "Line 2", click: function() { console.log("Line 2 Click!"); } } ] ,
+							color : "red" ,
+							textColor: "grey" ,
+							click: function() {
+								console.log("Container Click!");
+							}
+						},
+						{
+							text : "63%",
+							percent : 63,
+							lines : [{text:"Line 1"}, {text:"Line 2"}],
+							color : "green",
+							textColor: "blue"
+						},
+						{
+							text : "3.<br/>75%<br/>Exam.",
+							percent : 75,
+							lines : [{text:"Single Line"}],
+							color : "blue",
+							textColor: "red"
+						},
+						{
+							text : "4.<br/>32%<br/>Exam.",
+							percent : 32,
+							color : "pink",
+							textColor: "brown"
+						},
+						{
+							text : "95",
+							percent : 95
+						},
+						{
+						//empty
+						} ]
+			};
+
+
+const pc = new ProgressCircle(obj);
 ```
 ```js
-//css dosyasız çalışma / without css file
-var progress_circle = new ProgressCircle("#main", true);
-```
-```js
-// Send object
-var obj = {
-	text : "64%",
-	percent : 64,
-	lines : [{text:"Line 1"}, {text:"Line 2"}, {text:"Line 3"}, {text:"Line 4"}],
-	color : "green",
-	textColor: "grey"
-};
-```
-```js
-// Send Array -> object
-var obj = [
+const pc = new ProgressCircle({ selector: "body", css: true });
+
+let obj = [
 	{
 		text : "1.<br/>44%<br/>Exam.",
 		percent : 44,
@@ -41,38 +72,18 @@ var obj = [
 		lines : [{text:"Line 1"}, {text:"Line 2"}],
 		color : "green",
 		textColor: "blue"
-	},
-	{
-		text : "3.<br/>75%<br/>Exam.",
-		percent : 75,
-		lines : [{text:"Single Line"}],
-		color : "blue",
-		textColor: "red"
-	},
-	{
-		text : "4.<br/>32%<br/>Exam.",
-		percent : 32,
-		color : "pink",
-		textColor: "brown"
-	},
-	{
-		text : "95",
-		percent : 95
-	},
-	{
-	//empty
 	}
 ];
 ```
-Verilerin gösterimi için / For display of data
+For display of data / Verilerin gösterimi için...
 ```js
 //obj -> Array or Object
-progress_circle.load(obj);
+pc.load(obj);
 ```
 Tekrar veri ekle / Add data again
 ```js
 // Send object
-var obj2 = {
+let obj2 = {
 	text : "55%",
 	percent : 55,
 	lines : [{text:"Line 1"}, {text:"Line 2"}, {text:"Line 3"}, {text:"Line 4"}],
@@ -80,11 +91,11 @@ var obj2 = {
 	textColor: "red"
 };
 
-progress_circle.load(obj2);
+pc.load(obj2);
 
-progress_circle.load({text:"Ahaa", percent: 15, color: "purple"});
+pc.load({text:"Ahaa", percent: 15, color: "purple"});
 // add empty - circle bar
-progress_circle.load({});
+pc.load({});
 ```
 Ekrana duyarlı çalışması için ekleyiniz.(responsive)
 ```html
@@ -93,57 +104,6 @@ Ekrana duyarlı çalışması için ekleyiniz.(responsive)
 ```html
 <script type="text/javascript" src="assets/js/progresscircle.js"></script>
 <link rel="stylesheet" href="assets/css/progresscircle.css">
-```
-Bu yöntem ile kullanıldığında css dosyasına ihtiyaç yoktur.
-No css file is needed when used with this method.
-```js
-var progress_circle = new ProgressCircle("#main", true);
-
-// only add -> <script type="text/javascript" src="assets/js/progresscircle.js"></script>
-```
-Çalışan bir örnek kodun tamamamı / A complete working example code
-------
-```js
-// "#main" or ".main"-> verinin ekleneceği elemanı ifade eder / Indicates the element to which the data will be inserted.
-// <div id="main"></div>
-
-var progress_circle = new ProgressCircle("#main", true);
-
-var obj = {
-	text : "63%",
-	percent : 63,
-	lines : [{text:"Line 1"}, {text:"Line 2"}, {text:"Line 3"}, {text:"Line 4"}, {text:"Line 5"}],
-	color : "red",
-	textColor: "red"
-};
-
-progress_circle.load(obj);
-```
-Önceden eklenmiş verileri değiştirme.
-Changing previously added data.
-```js
-var obj = {
-	text : "63%",
-	percent : 63,
-	lines : [{text:"Line 1"}, {text:"Line 2"}, {text:"Line 3"}, {text:"Line 4"}, {text:"Line 5"}],
-	color : "red",
-	textColor: "red",
-	index: 0 <--container index
-};
-
-progress_circle.change(obj);
-```
-Dairesel işlem çubuğuna tıklama olayı ekleme.
-```js
-var obj = {......};
-progress_circle.load(obj);
-let pc_app = progress_circle.getApp();
-container = pc_app.containers[0..100...1000(int)];
-	
-//Container -> progress_circle object -> add Event
-container.progress_circle.view.addEventListener("click", function(event){
-	//code run...
-},false);
 ```
 
 Css buradaki projeden alınmıştır:
